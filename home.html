@@ -18,7 +18,10 @@
             <h1 id="titulo-home"></h1>
             <button id="logout">LOGOUT</button>
             <form id="form-novo-recado">
-                <input required type="text" placeholder="Digite aqui seu novo recado..." id="novo-recado-input" />
+                <input required type="text" placeholder="Digite o título do seu novo recado..."
+                    id="titulo-novo-recado-input">
+                <input required type="text" placeholder="Digite a descrição do seu novo recado..."
+                    id="novo-recado-input" />
                 <input type="submit" value="NOVO RECADO" id="novo-recado-submit" />
             </form>
         </header>
@@ -26,25 +29,10 @@
         <main>
 
             <div class="lista-recados">
-                <h2>Recados</h2>
+                <h2 id="cabecalho-titulo">Título</h2>
+                <h2 id="cabecalho-descricao">Descrição</h2>
 
                 <div id="recados">
-
-                    <!-- <div class="recado">
-
-                        <div class="conteudo-recado">
-
-                            <input type="text" class="texto-recado" value="..." readonly>
-
-                        </div>
-                        <div class="botoes-recado">
-
-                            <button class="editar-recado">EDITAR</button>
-                            <button class="deletar-recado">DELETAR</button>
-
-                        </div>
-
-                    </div> -->
 
                 </div>
 

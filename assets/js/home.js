@@ -2,6 +2,7 @@
 const logado = sessionStorage.getItem('logado');
 const listaUsuarios = JSON.parse(localStorage.getItem('usuarios') || '[]'); 
 const formRecado = document.querySelector("#form-novo-recado");
+const inputTituloNovoRecado = document.querySelector("#titulo-novo-recado-input");
 const inputNovoRecado = document.querySelector("#novo-recado-input");
 const listaElementos = document.querySelector("#recados"); 
 const botaoLogout = document.getElementById("logout");
@@ -47,8 +48,10 @@ formRecado.addEventListener('submit', (e) => {
 
 function salvarRecado(){
     let recado = inputNovoRecado.value;
+    let tituloRecado = inputTituloNovoRecado.value;
 
     const novoRecado = {
+        titulo: tituloRecado,
         detalhamento: recado,
         id: Math.floor(Math.random() * Date.now())
     }
@@ -77,6 +80,7 @@ function atualizarStorage(){
 }
 
 function montarRecado(novoRecado){  
+    let titulo = novoRecado.titulo;
     let recado =  novoRecado.detalhamento;
     const elementoRecado = document.createElement("div");
     elementoRecado.classList.add("recado");
@@ -89,6 +93,12 @@ function montarRecado(novoRecado){
     inputRecado.type = "text";
     inputRecado.value = recado;
     inputRecado.setAttribute("readonly", "readonly");
+    const inputTitulo = document.createElement("input");
+    inputTitulo.classList.add("titulo-recado");
+    inputTitulo.type = "text";
+    inputTitulo.value = titulo;
+    inputTitulo.setAttribute("readonly", "readonly");
+    conteudoRecado.appendChild(inputTitulo);
     conteudoRecado.appendChild(inputRecado);
     const botoesRecado = document.createElement("div");
     botoesRecado.classList.add("botoes-recado");
@@ -102,37 +112,28 @@ function montarRecado(novoRecado){
     botoesRecado.appendChild(botaoDeletarRecado);
     elementoRecado.appendChild(botoesRecado);
     listaElementos.appendChild(elementoRecado);
-
-    // botaoEditarRecado.addEventListener('click', () => );
-
-    // botaoEditarRecado.addEventListener('click', () => {
-    //     if(botaoEditarRecado.innerText.toLocaleLowerCase() == "editar"){
-    //         inputElementoRecado.removeAttribute("readonly");
-    //         inputElementoRecado.focus();
-    //         botaoEditarRecado.innerText = "SALVAR";
-    //     } else {
-    //         inputElementoRecado.setAttribute("readonly", "readonly");
-    //         botaoEditarRecado.innerText = "EDITAR";
-    //     }
-    // })
-    botaoEditarRecado.addEventListener('click', () => editarRecado(botaoEditarRecado, inputRecado, novoRecado.id));
+    botaoEditarRecado.addEventListener('click', () => editarRecado(botaoEditarRecado,inputTitulo, inputRecado, novoRecado.id));
     botaoDeletarRecado.addEventListener('click', () => apagarRecado(novoRecado.id));
 };
 
-function editarRecado(botaoEditarRecado, inputRecado, id){
+function editarRecado(botaoEditarRecado,inputTitulo, inputRecado, id){
     let user = listaUsuarios.find(
         (valor) => valor.email == logado);
     let recadoEspecifico = user.recados.findIndex((recado) => recado.id === id);
-
     if(botaoEditarRecado.innerText.toLocaleLowerCase() == "editar"){
         inputRecado.removeAttribute("readonly");
         inputRecado.focus();
+        inputTitulo.removeAttribute("readonly");
+        inputTitulo.focus();
         botaoEditarRecado.innerText = "SALVAR";
     } else {
         inputRecado.setAttribute("readonly", "readonly");
+        inputTitulo.setAttribute("readonly", "readonly");
         botaoEditarRecado.innerText = "EDITAR";
         let novoInput = inputRecado.value;
+        let novoTitulo = inputTitulo.value;
         user.recados[recadoEspecifico].detalhamento = novoInput;
+        user.recados[recadoEspecifico].titulo = novoTitulo;
         atualizarDadosUsuario(user);
     }
 }
