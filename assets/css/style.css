@@ -229,14 +229,17 @@ main{
 }
 
 .lista-recados{
+    margin-bottom: 1rem;
     padding: 1rem;
+    background-image: linear-gradient(to right, #f3e600, #FF003C);
+    border-radius: .5rem;
 }
 
 .lista-recados h2{
     font-size: 1.5rem;
     letter-spacing: .1rem;
-    font-weight: 300;
-    color: #f0ffffde;
+    font-weight: 700;
+    color: #181818;
     margin-bottom: 1rem;
 }
 
