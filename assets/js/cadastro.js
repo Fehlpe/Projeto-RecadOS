@@ -26,11 +26,6 @@ formularioCadastro.addEventListener('submit', (evento) => {
         return;
     }
 
-    if(senha.length<4){
-        alert('Digite uma senha de no mínimo quatro caracteres');
-        return;
-    }
-
     const user = {
         username: usuario,
         email: email,

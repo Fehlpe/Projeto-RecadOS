@@ -297,11 +297,11 @@ main{
     text-transform: uppercase;
 }
 
-.recado .botoes-recado button:hover {
+.main-recados button:hover {
     opacity: .8;
 }
 
-.recado .botoes-recado button:active {
+.main-recados button:active {
     opacity: .6;
 }
 
@@ -317,20 +317,5 @@ main{
     -webkit-text-fill-color: transparent;
 }
 
-@media only screen and (max-width:950px){
-    .card-login{
-        width: 85%;
-    }
-}
-
-@media only screen and (max-width:600px) {
-    .main-login{
-        flex-direction: column;
-    }
-
-    .card-login{
-        width: 90%;
-    }
-}
 
 
