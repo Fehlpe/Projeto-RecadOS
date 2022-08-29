@@ -1,4 +1,3 @@
-
 const logado = sessionStorage.getItem('logado');
 const listaUsuarios = JSON.parse(localStorage.getItem('usuarios') || '[]'); 
 const formRecado = document.querySelector("#form-novo-recado");
